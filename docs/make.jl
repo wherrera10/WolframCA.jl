@@ -1,12 +1,9 @@
 using Documenter, WolframCA
 
 
-makedocs(
-    sitename = "WolframCA Module Documentation",
-    format = Documenter.HTML(prettyurls = false),
-)
+makedocs(sitename = "WolframCA Module Documentation")
 
 deploydocs(
     repo = "github.com/wherrera10/WolframCA.jl.git",
-    devbranch = "master",  
+    devbranch = "main",  
 )
