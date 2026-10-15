@@ -1,6 +1,6 @@
 #1-dim CAs
 
-""" Elementary & totalistic CA with r-nearest neighbor and k states """
+# Struct for Elementary & totalistic CA with r-nearest neighbor and k states
 struct CellularAutomaton
 
     # user given values
