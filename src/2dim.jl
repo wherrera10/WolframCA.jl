@@ -11,6 +11,21 @@ struct CA2d
     #Internal values
     cells::Array{Int8, 3}
 
+    """
+        CA2d(B::Array{Int,1},
+            S::Array{Int,1},
+            init::Array{Int,2},
+            gen::Int,
+            k::Int=2,
+            r::Int=1)
+
+    Constructor for CA2d.
+        B and S are the birth and survival rules.
+        init is the initial grid of cells.
+        gen is the number of generations to simulate.
+        k is the number of states.
+        r is the neighborhood radius.    
+    """
     function CA2d(B::Array{Int,1},
                   S::Array{Int,1},
                   init::Array{Int,2},
@@ -39,12 +54,7 @@ struct CA2d
     end
 end
 
-#Evaluate life rules
-#TODO: make this more general
-function eval_rule(cc, olds, B, S)
-    if cc in B || (olds == 1 && cc in S)
-        return 1
-    end
-
-    return 0
+"""Evaluate life rules for the CA2d. Return an Int not a Bool """
+function eval_rule(cc, olds, B, S)::Int
+    return cc in B || (olds == 1 && cc in S) ? 1 : 0
 end
