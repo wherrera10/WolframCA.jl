@@ -56,6 +56,10 @@ function turbine_test()
     end
 end
 
-turbine_test()
+@testset "Turbine Test" begin
+    turbine_test()
+end
 
-blinker_test()
+@testset "Blinker Test" begin
+    blinker_test()
+end
