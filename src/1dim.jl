@@ -1,21 +1,27 @@
 #1-dim CAs
 
-# Elementary & totalistic CA with r-nearest neighbor and k states
+""" Elementary & totalistic CA with r-nearest neighbor and k states """
 struct CellularAutomaton
 
-    #user given values
-    N::Int #code
-    ruleset::Array{Int8,1} #set of rules
-    k::Int #number of states
-    r::Int #r-nearest neighbor
+    # user given values
+    N::Int # Wolfram code
+    ruleset::Array{Int8,1} # set of rules
+    k::Int # number of states
+    r::Int # radius for r-nearest neighbor
 
-    #internal variables
+    # internal state variables
     cells::Array{Int8,2}
 
-    """
+    """ 
         CellularAutomaton(N::Int, init::Array{Int,1}, gen::Int; k::Int=2, r::Int=1)
 
-    Create a CellularAutomaton with Wolfram rule N, initial array init, and generations number gen.
+    Constructor for CellularAutomaton.
+
+    `N` is the Wolfram code.
+    `init` is the initial state.
+    `gen` is the number of generations.
+    `k` is the number of states.
+    `r` is the neighborhood radius.
     """
     function CellularAutomaton(N::Int, init::Array{Int,1}, gen::Int; k::Int=2, r::Int=1)
         ruleset = rule(N, k, r)
@@ -56,10 +62,13 @@ struct CellularAutomaton
         new(N, ruleset, k, r, cells)
     end
 
-    """
+    """ 
         CellularAutomaton(N::Int, gen::Int; kvs...)
 
-    Quick setup for one seed cell in the center.
+    Quick setup for one seed cell in the center as init.
+
+    `N` is the Wolfram code.
+    `gen` is the number of generations.
     """
     function CellularAutomaton(N::Int, gen::Int; kvs...)
         init = Array{Int}(zeros(2*gen))
@@ -69,7 +78,7 @@ struct CellularAutomaton
     end
 end
 
-""" Parse rule numbering according to the Wolfram code, with n the rule, k the number of states """
+""" Parse rule numbering according to the Wolfram code """
 function rule(n::Int, k=2, r=1)
     if k < 2
         error("number of states (k) must be larger than 1; you gave $k")
