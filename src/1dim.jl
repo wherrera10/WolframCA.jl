@@ -1,8 +1,7 @@
 #1-dim CAs
 
-# Struct for Elementary & totalistic CA with r-nearest neighbor and k states
-struct CellularAutomaton
-
+# Struct for Elementary & totalistic 1-dimensional CA with r-nearest neighbor and k states
+struct CellularAutomaton1D
     # user given values
     N::Int # Wolfram code
     ruleset::Array{Int8,1} # set of rules
@@ -12,11 +11,14 @@ struct CellularAutomaton
     # internal state variables
     cells::Array{Int8,2}
 end
-    
+
+# Backwards compatibility
+const CellularAutomaton = CellularAutomaton1D
+
 """ 
     CellularAutomaton(N::Int, init::Array{Int,1}, gen::Int; k::Int=2, r::Int=1)
 
-Constructor for 1-dimensional CellularAutomaton.
+Constructor for 1-dimensional cellular atomaton.
 
 `N` is the Wolfram code.
 `init` is the initial state.
@@ -24,7 +26,7 @@ Constructor for 1-dimensional CellularAutomaton.
 `k` is the number of states.
 `r` is the neighborhood radius.
 """
-function CellularAutomaton(N::Int, init::Array{Int,1}, gen::Int; k::Int=2, r::Int=1)
+function CellularAutomaton1D(N::Int, init::Array{Int,1}, gen::Int; k::Int=2, r::Int=1)
     ruleset = rule(N, k, r)
 
     w = length(init)
@@ -60,18 +62,18 @@ function CellularAutomaton(N::Int, init::Array{Int,1}, gen::Int; k::Int=2, r::In
         end
     end
 
-    CellularAutomaton(N, ruleset, k, r, cells)
+    CellularAutomaton1D(N, ruleset, k, r, cells)
 end
 
 """ 
-    CellularAutomaton(N::Int, gen::Int; kvs...)
+    CellularAutomaton1D(N::Int, gen::Int; kvs...)
 
 Quick setup for one seed cell in the center as init.
 
 `N` is the Wolfram code.
 `gen` is the number of generations.
 """
-function CellularAutomaton(N::Int, gen::Int; kvs...)
+function CellularAutomaton1D(N::Int, gen::Int; kvs...)
     init = Array{Int}(zeros(2*gen))
     init[gen] = 1
 
