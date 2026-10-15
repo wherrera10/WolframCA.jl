@@ -1,6 +1,6 @@
 using WolframCA
 
-#Rule 90 1-dim Cellular Automata run for 15 generations
+# Rule 90 1-dim Cellular Automata run for 15 generations
 function rule90example()
     #init=Array{Int}(zeros(1000))
     #init[Int(1000/2)]=1
@@ -11,7 +11,7 @@ function rule90example()
     ca
 end
 
-#Turbine pattern from Conway's game of life
+# Turbine pattern from Conway's game of life
 function turbine_example()
     init = Array{Int}(zeros(20,20))
     init[4, 4:9] = 1
