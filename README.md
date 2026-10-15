@@ -1,14 +1,20 @@
-Cellular Automata
-===================
+# WolframCA
+
+A Wolfram cellular automaton package
 
 > A cellular automaton is a collection of "colored" cells on a grid of specified shape that evolves through a number of discrete time steps according to a set of rules based on the states of neighboring cells. 
 > The rules are then applied iteratively for as many time steps as desired.
 
 [mathworld.wolfram.com/CellularAutomaton](http://mathworld.wolfram.com/CellularAutomaton.html)
 
+This package implements elementary and totalistic 1-dim cellular automata using Wolfram's rule-numbering scheme, as well as Game-of-Life-style 2-dim cellular automata.
 
-Elementary CA
--------------
+> **Note:** This project was originally [CellularAutomata.jl](https://github.com/natj/CellularAutomata.jl) by Joonas Nättilä, which has been unmaintained since 2017. It is continued here as WolframCA.jl (renamed to avoid a naming conflict with an unrelated, actively maintained [`CellularAutomata.jl`](https://github.com/MartinuzziFrancesco/CellularAutomata.jl) package already registered in the Julia General registry). See [LICENSE](LICENSE) for attribution.
+
+
+### Elementary CA
+
+
 To generate an elementary cellular automaton, use
 ```julia
 ca = CellularAutomaton(rule, init, gen)
@@ -18,7 +24,7 @@ For a single starting cell in the middle just omit the `init` vector.
 
 To generate 15 generations of elementary cellular automaton of rule 90 use
 ```julia
-using CellularAutomata
+using WolframCA
 
 ca90 = CellularAutomaton(90, 16)
 ```
@@ -40,8 +46,8 @@ ca90 = CellularAutomaton(90, 16)
                  # # # # # # # # # # # # # # # #                     
 
 
-Totalistic CA
--------------
+### Totalistic CA
+
 
 For a more complex cellular automaton you can change the number of states `k` the cell can be and the radius `r` of neighbors that can influence the states.
 If `k` is changed to be larger than 2, a totalistic CA is computed where only the average value of all neighbors count.
@@ -66,8 +72,8 @@ ca = CellularAutomaton(993, 15, k=3)
 	          X# #X XX###X## ##X###XX X# #X           
 
 
-2 dimensional CAs
------------------
+### 2 dimensional CAs
+
 
 Two dimensional cellular automaton (like Conway's Game of Life) can be created by
 ```julia
@@ -212,8 +218,34 @@ ca = CA2d([3], [2, 3], init, 9)
 	            	                    
 	                    
 	                    
-Running Tests
------------------
+### Image Display:
+
+
+Any `CellularAutomaton` or `CA2d` can also be rendered as a PNG image (via Cairo), in addition to the text representation shown above.
+In a rich front-end that supports image display (e.g. Jupyter, Pluto, or VS Code's Julia extension), simply calling `display(ca)` shows the automaton's generations as an image.
+To save the image to a file instead, use
+```julia
+open("ca.png", "w") do io
+    show(io, MIME("image/png"), ca)
+end
+```
+See [examples/display.jl](examples/display.jl) for a complete example.
+
+
+### Installation:
+
+To install from a Julia REPL command line session you may use `]add WolframCA` at the command line, or with Pkg:
+
+    using Pkg
+    Pkg.add("EDFPlus"))
+
+Toa add the current main branch code"
+
+    Pkg.add("https//github.com/wherrera10/WolframCA.jl")
+
+
+### Running Tests:
+
 
 To run tests, execute the following command from the root folder of the repository:
 

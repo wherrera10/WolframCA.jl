@@ -26,14 +26,10 @@ struct CA2d
             for i = 1:h, j = 1:w
                 cc = -cells[i, j, g-1]
                 for p = (i-r):(i+r), q = (j-r):(j+r)
-
                     #Cyclic boundary conditions
-                    if p < 1; p = h-p; end
-                    if p > h; p = p-h; end
-                    if q < 1; q = w-q; end
-                    if q > w; q = q-w; end
-
-                    cc += cells[p, q, g-1]
+                    pi = mod1(p, h)
+                    qj = mod1(q, w)
+                    cc += cells[pi, qj, g-1]
                 end
                 cells[i, j, g] = eval_rule(cc, cells[i, j, g-1], B, S)
             end #hw ij
@@ -45,7 +41,7 @@ end
 
 #Evaluate life rules
 #TODO: make this more general
-function eval_rule(cc, olds, B, S, k=2)
+function eval_rule(cc, olds, B, S)
     if cc in B || (olds == 1 && cc in S)
         return 1
     end

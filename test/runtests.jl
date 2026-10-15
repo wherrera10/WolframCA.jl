@@ -1,4 +1,4 @@
-using CellularAutomata
+using WolframCA
 using Test
 
 # Function to test Conway's blinker oscillator and toad oscillator

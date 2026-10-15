@@ -1,21 +1,18 @@
-authors = ["Joonas Nättilä"]
-name = "CellularAutomata"
+authors = ["Joonas Nättilä", "William Herrera"]
+name = "WolframCA"
 uuid = "6a004c20-d1f1-11eb-3021-f9b1ed3016f1"
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
-Tk = "4225ea8a-3324-57e7-9ddc-5798a2cb9eab"
 Cairo = "159f3aea-2a34-519c-b102-8c37f9878175"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 
 [compat]
-julia = "1"
-Cairo = "1"
-Tk = "0.6, 0.7, 0.8, 0.9"
+julia = "1.10"
+Cairo = "1.1"
 
 [targets]
-test = ["Pkg", "Test"]
+test = ["Test"]

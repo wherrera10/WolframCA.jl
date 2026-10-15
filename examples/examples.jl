@@ -1,4 +1,4 @@
-using CellularAutomata
+using WolframCA
 
 #Rule 90 1-dim Cellular Automata run for 15 generations
 function rule90example()

@@ -21,7 +21,7 @@ struct CellularAutomaton
 
         if k == 2
             #Elementary CA
-            mp = reverse(Int8[k^i for i = 0:2r+1])
+            mp = reverse(Int8[k^i for i = 0:2r])
         else
             #Totalistic CA
             mp = Array{Int8}(ones(2r+1))
@@ -31,16 +31,17 @@ struct CellularAutomaton
             for j = 1:w
                 ind = 0 ; s = 1
                 for q = (j-r):(j+r)
+                    idx = q
 
                     #Cyclic boundary conditions
-                    if q < 1
-                        q = w-q
+                    if idx < 1
+                        idx = w-idx
                     end
-                    if q > w
-                        q = q-w
+                    if idx > w
+                        idx = idx-w
                     end
 
-                    ind += mp[s]*cells[i-1, q]
+                    ind += mp[s]*cells[i-1, idx]
                     s += 1
                 end
                 cells[i,j] = ruleset[ind+1]

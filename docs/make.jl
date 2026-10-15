@@ -1,3 +1,12 @@
-using Documenter, CellularAutomata
+using Documenter, WolframCA
 
-makedocs(sitename = "CellularAutomata Module Documentation", format = Documenter.HTML(prettyurls = false))
+
+makedocs(
+    sitename = "WolframCA Module Documentation",
+    format = Documenter.HTML(prettyurls = false),
+)
+
+deploydocs(
+    repo = "github.com/wherrera10/WolframCA.jl.git",
+    devbranch = "master",  
+)
