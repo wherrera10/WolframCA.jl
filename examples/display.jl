@@ -7,6 +7,7 @@
 # script instead writes the result to a PNG file so it can be viewed anywhere.
 using WolframCA
 
+""" make a png of the game of life graphic """
 function life_png(path::AbstractString, init::Array{Int,2}, B, S, gen::Int)
     ca = CA2d(B, S, init, gen)
     open(path, "w") do io
@@ -15,7 +16,7 @@ function life_png(path::AbstractString, init::Array{Int,2}, B, S, gen::Int)
     ca
 end
 
-#turbine pattern
+# turbine pattern
 init = zeros(Int, 20, 20)
 init[4, 4:9] .= 1
 init[5, 4:9] .= 1
@@ -29,11 +30,11 @@ init[12, 7:12] .= 1
 init[7:12, 4] .= 1
 init[7:12, 5] .= 1
 
-#random blob
+# random blob
 #init = zeros(Int, 40, 40)
 #init[15:25, 15:25] = rand(0:1, 11, 11)
 
-#game of life
+# game of life
 life_png("game_of_life.png", init, [3], [2,3], 9)
 
 #morley
