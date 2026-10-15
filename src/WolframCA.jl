@@ -48,7 +48,7 @@ function Base.show(io::IO, ca::CellularAutomaton)
         print(io2,"\n")
     end
 
-    print(io, String(io2))
+    print(io, String(take!(io2)))
 end
 
 #Print CA to screen
@@ -78,7 +78,7 @@ function Base.show(io::IO, ca::CA2d)
         print(io2,"\n\n")
     end
 
-    print(io, String(io2))
+    print(io, String(take!(io2)))
 end
 
 # Number of output image pixels used per automaton cell, so that grids with
@@ -127,5 +127,5 @@ function Base.show(io::IO, ::MIME"image/png", ca::CA2d)
     write_to_png(CairoRGBSurface(img), io)
 end
 
-#end of module
-end
+
+end # module WolframCA
