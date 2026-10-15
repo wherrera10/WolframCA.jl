@@ -20,7 +20,11 @@ export CellularAutomaton,
        rule,
        show
 
-""" Print CA to screen """
+"""
+    Base.show(io::IO, ca::CA2d)
+
+Print CA to screen from CA as CellularAutomaton
+"""
 function Base.show(io::IO, ca::CellularAutomaton)
     io2 = IOBuffer()
 
@@ -52,7 +56,11 @@ function Base.show(io::IO, ca::CellularAutomaton)
     print(io, String(take!(io2)))
 end
 
-""" Print CA to screen """
+"""
+    Base.show(io::IO, ca::CA2d)
+
+Print CA to screen as CA2d
+"""
 function Base.show(io::IO, ca::CA2d)
     io2 = IOBuffer()
 
@@ -88,16 +96,20 @@ end
 const CELL_PIXELS = 8
 
 """ 
-    Packed 0x00RRGGBB color for a single cell's state: white when dead, black
-    when alive, and gray for the second "alive" state of a k=3 totalistic CA. 
+    cell_rgb(ca::CellularAutomaton, state::Integer)
+
+Packed 0x00RRGGBB color for a single cell's state: white when dead, black
+when alive, and gray for the second "alive" state of a k=3 totalistic CA. 
 """
 cell_rgb(ca::CellularAutomaton, state::Integer) =
     state == 0 ? 0x00ffffff : (ca.k == 3 && state == 2 ? 0x00999999 : 0x00000000)
 cell_rgb(::CA2d, state::Integer) = state == 0 ? 0x00ffffff : 0x00000000
 
 """
-    Build a pixel buffer for a 2-dim grid of cell states, scaling each cell up
-    to a CELL_PIXELS x CELL_PIXELS block so the image is visible.
+    grid_to_image(ca, grid::AbstractMatrix)
+
+Build a pixel buffer for a 2-dim grid of cell states, scaling each cell up
+to a CELL_PIXELS x CELL_PIXELS block so the image is visible.
 """
 function grid_to_image(ca, grid::AbstractMatrix)
     h, w = size(grid)
@@ -110,8 +122,10 @@ function grid_to_image(ca, grid::AbstractMatrix)
 end
 
 """
-    Render CA to a PNG image (e.g. for Jupyter/Pluto/VS Code's plot pane), with
-    each generation on its own row, as in the text representation above.
+        Base.show(io::IO, ::MIME"image/png", ca::CellularAutomaton)
+
+Render CA to a PNG image (e.g. for Jupyter/Pluto/VS Code's plot pane), with
+each generation on its own row, as in the text representation above.
 """
 function Base.show(io::IO, ::MIME"image/png", ca::CellularAutomaton)
     img = grid_to_image(ca, ca.cells)
