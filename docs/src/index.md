@@ -234,6 +234,6 @@ julia tests/run_tests.jl
 ```
 
 ```@autodocs
-Modules = [OpenBCI]
+Modules = [WolframCA]
 ```
 
