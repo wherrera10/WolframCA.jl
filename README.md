@@ -12,7 +12,7 @@ A Wolfram cellular automaton package
 This package implements elementary and totalistic 1-dim cellular automata using Wolfram's rule-numbering scheme, as well as Game-of-Life-style 2-dim cellular automata.
 
 > **Note:** This project was originally [CellularAutomata.jl](https://github.com/natj/CellularAutomata.jl) by Joonas Nättilä, which has been unmaintained since 2017. It is continued here as WolframCA.jl (renamed to avoid a naming conflict with an unrelated, actively maintained [`CellularAutomata.jl`](https://github.com/MartinuzziFrancesco/CellularAutomata.jl) package already registered in the Julia General registry). See [LICENSE](LICENSE) for attribution.
-Originally, CellularAutomaton1D was named CellularAutomaton and CellularAutomaton2D was names CA2d, and these names still work as aliases, as below.
+Originally, CellularAutomaton1D was named CellularAutomaton and CellularAutomaton2D was named CA2d. The older names still work as aliases, as below.
 
 ### Elementary CA
 
