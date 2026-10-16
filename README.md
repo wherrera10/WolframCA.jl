@@ -12,14 +12,14 @@ A Wolfram cellular automaton package
 This package implements elementary and totalistic 1-dim cellular automata using Wolfram's rule-numbering scheme, as well as Game-of-Life-style 2-dim cellular automata.
 
 > **Note:** This project was originally [CellularAutomata.jl](https://github.com/natj/CellularAutomata.jl) by Joonas Nättilä, which has been unmaintained since 2017. It is continued here as WolframCA.jl (renamed to avoid a naming conflict with an unrelated, actively maintained [`CellularAutomata.jl`](https://github.com/MartinuzziFrancesco/CellularAutomata.jl) package already registered in the Julia General registry). See [LICENSE](LICENSE) for attribution.
-
+Originally, CellularAutomaton1D was named CellularAutomaton and CellularAutomaton2D was names CA2d, and these names still work as aliases, as below.
 
 ### Elementary CA
 
 
 To generate an elementary cellular automaton, use
 ```julia
-ca = CellularAutomaton(rule, init, gen)
+ca = CellularAutomaton(rule, init, gen) # or CellularAutomaton1D(rule, init, gen)
 ```
 where `rule` is the Wolfram code (integer), `init` is a vector containing the initial starting condition and `gen` is the number of generations to be computed.
 For a single starting cell in the middle just omit the `init` vector.
@@ -76,14 +76,19 @@ ca = CellularAutomaton(993, 15, k=3)
 
 ### 2 dimensional CAs
 
+Note that when plotted with generation number as one axis, a CellularAutomaton1D actually produces a 2-dimensional graph or heatmap.
+Likewise, a true 2-dimensional automaton will thus produce a 3-dimensional plot is generation number is an axis.
 
-Two dimensional cellular automaton (like Conway's Game of Life) can be created by
+Two dimensional cellular automata (as in Conway's Game of Life) can be created by
+
 ```julia
 ca = CA2d(B, S, init, gen)
 ```
+
 where `B` and `S` are vectors that have the numbers of neighboring cells that define when cell is born or survives, `init` (matrix) is the initial starting condition and `gen` is the number of generations the CA is to be computed.
 
 Game of life is then run for 9 generations for e.g. a turbine pattern by typing
+
 ```julia
 ca = CA2d([3], [2, 3], init, 9)
 ```
@@ -222,16 +227,17 @@ ca = CA2d([3], [2, 3], init, 9)
 	                    
 ### Image Display:
 
-
 Any `CellularAutomaton` or `CA2d` can also be rendered as a PNG image (via Cairo), in addition to the text representation shown above.
 In a rich front-end that supports image display (e.g. Jupyter, Pluto, or VS Code's Julia extension), simply calling `display(ca)` shows the automaton's generations as an image.
 To save the image to a file instead, use
+
 ```julia
 open("ca.png", "w") do io
     show(io, MIME("image/png"), ca)
 end
 ```
-See [examples/display.jl](examples/display.jl) for a complete example.
+
+See [examples/display.jl](examples/display.jl) for a more complete example.
 
 
 ### Installation:
