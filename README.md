@@ -77,7 +77,8 @@ ca = CellularAutomaton(993, 15, k=3)
 ### 2 dimensional CAs
 
 Note that when plotted with generation number as one axis, a CellularAutomaton1D actually produces a 2-dimensional graph or heatmap.
-Likewise, a true 2-dimensional automaton will thus produce a 3-dimensional plot is generation number is an axis.
+Likewise, a true 2-dimensional automaton will thus produce a 3-dimensional plot is generation number is an axis. More commonly, the 
+CellularAutomaton2D evolution over time is expressed as an animation, as, for example, Conway's Game of Life is often shown as video.
 
 Two dimensional cellular automata (as in Conway's Game of Life) can be created by
 
