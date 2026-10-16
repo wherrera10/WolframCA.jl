@@ -15,7 +15,9 @@ if !isdefined(@__MODULE__, :CA2d)
     abstract type CA2d <: CellularAutomaton end
 end
 
-export CellularAutomaton,
+export CellularAutomaton1D,
+       CellularAutomaton2D,
+       CellularAutomaton,
        CA2d,
        rule,
        show
